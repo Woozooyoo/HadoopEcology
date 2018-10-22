@@ -171,5 +171,12 @@ public class HBaseUtil {
 		//格式化分区号
 		DecimalFormat df = new DecimalFormat ("00");
 		return df.format (regionCode);
+		/*//分区数
+		int regions = Integer.parseInt(PropertiesUtil.getProp("hbase.regions"));
+		//获取年月
+		String yearMonth = buildTime.replaceAll("-", "").substring(0, 6);
+		//分区号的生成
+		int splitNum = (Integer.parseInt(phoneNum.substring(3, 7)) ^ Integer.parseInt(yearMonth)) % regions;
+		return new DecimalFormat("00").format(splitNum);*/
 	}
 }

@@ -131,8 +131,9 @@ public class ProductLog {
 	 * 将数据写入到文件中
 	 */
 	public void writeLog(String filePath) {
+		OutputStreamWriter osw = null;
 		try {
-			OutputStreamWriter osw = new OutputStreamWriter (new FileOutputStream (filePath, true), "UTF-8");
+			osw = new OutputStreamWriter (new FileOutputStream (filePath, true), "UTF-8");
 			while (true) {
 				Thread.sleep (500);
 				String log = product ();
@@ -143,6 +144,14 @@ public class ProductLog {
 			}
 		} catch (Exception e) {
 			e.printStackTrace ();
+		} finally {
+			try {
+				assert osw != null;
+				osw.flush ();
+				osw.close ();
+			} catch (IOException e) {
+				e.printStackTrace ();
+			}
 		}
 	}
 

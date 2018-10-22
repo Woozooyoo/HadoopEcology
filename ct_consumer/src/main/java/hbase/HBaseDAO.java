@@ -68,7 +68,9 @@ public class HBaseDAO {
 				table.setAutoFlushTo(false);
 				table.setWriteBufferSize(2 * 1024 * 1024);
 			}
-
+			if (ori == null) {
+				return;
+			}
 			String[] splitOri = ori.split (",");
 			String caller = splitOri[0];
 			String callee = splitOri[1];
